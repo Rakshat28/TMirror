@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="__CSP__" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="__XTERM_CSS_URI__" />
+    <title>Interactive CLI Sandbox</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      body {
+        margin: 0;
+        padding: 12px;
+        font-family: var(--vscode-editor-font-family);
+        font-size: var(--vscode-editor-font-size);
+        color: var(--vscode-editor-foreground);
+        background: var(--vscode-editor-background);
+      }
+      .layout {
+        display: grid;
+        gap: 10px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 8px;
+        align-items: center;
+      }
+      #terminal {
+        height: 280px;
+        border: 1px solid var(--vscode-panel-border);
+        border-radius: 4px;
+        padding: 6px;
+        background: var(--vscode-terminal-background, var(--vscode-editor-background));
+      }
+      #schema {
+        border: 1px solid var(--vscode-panel-border);
+        border-radius: 4px;
+        padding: 8px;
+        white-space: pre-wrap;
+        max-height: 180px;
+        overflow: auto;
+      }
+      .footer {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <div class="row">
+        <vscode-textfield id="commandInput" value="ls"></vscode-textfield>
+        <vscode-button id="runBtn">Run</vscode-button>
+        <vscode-button id="stopBtn" appearance="secondary">Stop</vscode-button>
+      </div>
+      <div class="row" style="grid-template-columns: auto auto 1fr auto;">
+        <vscode-checkbox id="autoHelp">Auto Scrape Help</vscode-checkbox>
+        <vscode-single-select id="samplingRate" value="60">
+          <vscode-option value="20">20Hz</vscode-option>
+          <vscode-option value="30">30Hz</vscode-option>
+          <vscode-option value="60">60Hz</vscode-option>
+        </vscode-single-select>
+        <div class="footer" id="status">Idle.</div>
+        <vscode-button id="scrapeBtn" appearance="secondary">Scrape --help</vscode-button>
+      </div>
+      <div id="terminal" role="log" aria-label="CLI output"></div>
+      <div id="schema" aria-label="Parsed JSON schema">No schema yet.</div>
+    </div>
+
+    <script nonce="__NONCE__" src="__XTERM_JS_URI__"></script>
+    <script nonce="__NONCE__" src="__FIT_ADDON_URI__"></script>
+    <script nonce="__NONCE__" type="module" src="__VSCODE_ELEMENTS_URI__"></script>
+    <script nonce="__NONCE__" src="__WEBVIEW_JS_URI__"></script>
+  </body>
+</html>

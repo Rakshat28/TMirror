@@ -1,0 +1,92 @@
+{
+  "name": "interactive-cli-sandbox",
+  "displayName": "Interactive CLI Sandbox",
+  "description": "MVP VS Code extension for interactive CLI execution and help-driven UI scaffolding.",
+  "version": "0.0.1",
+  "publisher": "local-dev",
+  "private": true,
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:interactiveCliSandbox.open",
+    "onView:interactiveCliSandbox.view"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "interactiveCliSandbox.open",
+        "title": "Interactive CLI Sandbox: Open"
+      },
+      {
+        "command": "interactiveCliSandbox.runLs",
+        "title": "Interactive CLI Sandbox: Run Baseline ls"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "interactiveCliSandbox",
+          "title": "CLI Sandbox",
+          "icon": "media/sandbox.svg"
+        }
+      ]
+    },
+    "views": {
+      "interactiveCliSandbox": [
+        {
+          "type": "webview",
+          "id": "interactiveCliSandbox.view",
+          "name": "Interactive CLI Sandbox",
+          "icon": "media/sandbox.svg"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Interactive CLI Sandbox",
+      "properties": {
+        "interactiveCliSandbox.defaultCommand": {
+          "type": "string",
+          "default": "ls",
+          "description": "Command used for baseline connectivity and initial runs."
+        },
+        "interactiveCliSandbox.helpFlag": {
+          "type": "string",
+          "default": "--help",
+          "description": "Flag appended to a binary for heuristic metadata scraping."
+        },
+        "interactiveCliSandbox.maxIpcHz": {
+          "type": "number",
+          "default": 60,
+          "minimum": 1,
+          "maximum": 60,
+          "description": "Maximum IPC flush frequency in Hz for buffered terminal output."
+        },
+        "interactiveCliSandbox.cwd": {
+          "type": "string",
+          "default": "",
+          "description": "Optional working directory for spawned CLI processes. Empty uses current workspace root."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "@vscode-elements/elements": "^2.5.1",
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/vscode": "^1.95.0",
+    "typescript": "^5.8.2"
+  }
+}
