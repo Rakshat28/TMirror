@@ -19,7 +19,7 @@ Currently, Terminal Mirror is in active development. To run the MVP locally on y
 
 1. **Clone the repository and install dependencies:**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/Rakshat28/TMirror/tree/main
    cd TMIRROR
    npm install
    ```
