@@ -1,4 +1,4 @@
-# Terminal Mirror (Interactive CLI Sandbox)
+# Terminal Mirror (Interactive CLI Sandbox) (still in MVP phase)
 
 > A high-fidelity, AST-powered sandbox for Visual Studio Code that bridges the gap between CLI declaration and interactive execution.
 
